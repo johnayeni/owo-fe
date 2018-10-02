@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { App, NavController } from 'ionic-angular';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-contact',
-  templateUrl: 'contact.html'
+  templateUrl: 'contact.html',
 })
 export class ContactPage {
+  constructor(public navCtrl: NavController, public app: App) {}
 
-  constructor(public navCtrl: NavController) {
-
+  logout() {
+    this.app.getRootNav().setRoot(LoginPage);
   }
-
 }

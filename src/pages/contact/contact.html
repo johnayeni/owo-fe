@@ -1,17 +1,32 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      <ion-icon name="person" item-start></ion-icon> &nbsp; Profile
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <ion-icon name="person" color="primary" item-start></ion-icon>
+      Ayeni John
+    </ion-item>
+    <ion-item>
+      <ion-icon name="mail" color="primary" item-start></ion-icon>
+      test@gmail.com
+    </ion-item>
+    <ion-item>
+      <ion-icon name="cash" color="primary" item-start></ion-icon>
+      - N 24, 000
+    </ion-item>
+    <ion-item>
+      <ion-icon name="time" color="primary" item-start></ion-icon>
+      Since 25th September 2017
+    </ion-item>
+    <ion-item>
+      <ion-icon name="power" color="danger" item-start></ion-icon>
+      <button ion-button clear color="danger" (click)="logout()">Logout</button>
     </ion-item>
   </ion-list>
 </ion-content>

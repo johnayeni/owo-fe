@@ -1,11 +1,96 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      About
+      <ion-icon name="card" item-start></ion-icon> &nbsp; Transactions
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <div padding>
+    <ion-segment [(ngModel)]="transactions">
+      <ion-segment-button value="all">
+        All
+      </ion-segment-button>
+      <ion-segment-button value="expenses">
+        Expenses
+      </ion-segment-button>
+      <ion-segment-button value="income">
+        Income
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="transactions">
+    <ion-list *ngSwitchCase="'all'">
+      <ion-card *ngFor='let in of counter(5) ;let i = index'>
+
+        <ion-card-header [color]="i % 2 === 0 ? 'secondary': 'danger'">
+          {{ i % 2 === 0 ? "INCOME": "EXPENSE" }}
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="cash" color="primary" item-start></ion-icon>
+              N 1000
+            </ion-item>
+            <ion-item>
+              <ion-icon name="time" color="dark" item-start></ion-icon>
+              27th May 2018
+            </ion-item>
+          </ion-list>
+
+        </ion-card-content>
+
+      </ion-card>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'expenses'">
+      <ion-card *ngFor='let in of counter(5) ;let i = index'>
+
+        <ion-card-header color="danger">
+          EXPENSE
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="cash" item-start></ion-icon>
+              N 1000
+            </ion-item>
+            <ion-item>
+              <ion-icon name="time" item-start></ion-icon>
+              27th May 2018
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+
+      </ion-card>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'income'">
+      <ion-card *ngFor='let in of counter(5) ;let i = index'>
+
+        <ion-card-header color="secondary">
+          INCOME
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="cash" item-start></ion-icon>
+              N 1000
+            </ion-item>
+            <ion-item>
+              <ion-icon name="time" item-start></ion-icon>
+              27th May 2018
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+
+      </ion-card>
+    </ion-list>
+  </div>
 
 </ion-content>

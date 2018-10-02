@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +13,90 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.logo-text {
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0, #00edd0),
+    color-stop(0.15, #00b0e5)
+  );
+  background-image: gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0, #00edd0),
+    color-stop(0.15, #00b0e5)
+  );
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.toolbar {
+  .toolbar-background {
+    background-color: #318efa;
+    margin: 0;
+  }
+  .toolbar-content {
+    .title {
+      .toolbar-title {
+        color: #ffffff !important;
+      }
+    }
+  }
+}
+
+.card {
+  border: none;
+}
+
+%colored-card {
+  .card-header,
+  .card-content {
+    color: #ffffff !important;
+    h1 {
+      color: #ffffff !important;
+    }
+  }
+}
+
+.card--primary {
+  background-color: #318efa !important;
+  @extend %colored-card;
+}
+
+.card--danger {
+  background-color: #ff3e45 !important;
+  @extend %colored-card;
+}
+
+.card--success {
+  background-color: #00d86c !important;
+  @extend %colored-card;
+}
+
+.flex-center-column {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  .item-inner {
+    border: none !important;
+  }
+}

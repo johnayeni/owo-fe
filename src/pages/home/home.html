@@ -1,17 +1,45 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>
+      <ion-icon name="home" item-start></ion-icon> &nbsp; Home
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <ion-card class="card--primary">
+    <ion-card-header>
+      Balance
+    </ion-card-header>
+    <ion-card-content>
+      <h1>
+        - N 300000
+      </h1>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="card--success">
+    <ion-card-header>
+      Total Income
+    </ion-card-header>
+    <ion-card-content>
+      <h1>
+        N 240000
+      </h1>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="card--danger">
+    <ion-card-header>
+      Total Expenses
+    </ion-card-header>
+    <ion-card-content>
+      <h1>
+        N 300000
+      </h1>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab right bottom>
+    <button ion-fab>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
