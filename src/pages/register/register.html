@@ -6,38 +6,45 @@
 -->
 <ion-content padding>
 
-  <!-- <ion-list> -->
+  <form (ngSubmit)="register()">
+    <ion-item class="flex-center-column" style="margin-bottom: 50px">
+      <img src="assets/imgs/logo.png" width="150" height="150" />
+      <br />
+      <h1 class="logo-text" style="text-align: center !important">MONIFY</h1>
+    </ion-item>
 
-  <ion-item class="flex-center-column" style="margin-bottom: 50px">
-    <img src="assets/imgs/logo.png" width="200" height="200" />
-    <br />
-    <h1 class="logo-text" style="text-align: center !important">OWO</h1>
-  </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="person" item-start></ion-icon>Full name
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="formData.fullname" name="fullname"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>
-      <ion-icon name="mail" item-start></ion-icon>Email
-    </ion-label>
-    <ion-input type="text"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="mail" item-start></ion-icon>Email
+      </ion-label>
+      <ion-input type="email" [(ngModel)]="formData.email" name="email"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>
-      <ion-icon name="lock" item-start></ion-icon> Password
-    </ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="lock" item-start></ion-icon> Password
+      </ion-label>
+      <ion-input type="password" [(ngModel)]="formData.password" name="password"></ion-input>
+    </ion-item>
 
-  <!-- </ion-list> -->
 
-  <div>
-    <button ion-button block color="primary" style="margin-top: 50px" (click)="register()">REGISTER</button>
-  </div>
+    <div>
+      <button type="submit" ion-button block color="primary" style="margin-top: 50px">REGISTER</button>
+    </div>
+  </form>
+
 
   <br />
   <br />
   <div style="text-align: center !important">
     Already have an account ?
-    <button ion-button clear small color="primary" (click)="goToLoginPage()">Login</button>
+    <button ion-button clear small color="primary" (click)="goToLoginPage()" style="padding: 0; line-height: 2">Login</button>
   </div>
 </ion-content>

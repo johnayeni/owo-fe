@@ -8,7 +8,7 @@
 
 <ion-content padding>
   <div padding>
-    <ion-segment [(ngModel)]="transactions">
+    <ion-segment [(ngModel)]="transactionTab">
       <ion-segment-button value="all">
         All
       </ion-segment-button>
@@ -21,74 +21,128 @@
     </ion-segment>
   </div>
 
-  <div [ngSwitch]="transactions">
+  <div [ngSwitch]="transactionTab">
     <ion-list *ngSwitchCase="'all'">
-      <ion-card *ngFor='let in of counter(5) ;let i = index'>
+      <h1 *ngIf="transactions.length < 1">
+        No Transaction records
+      </h1>
+      <ion-card *ngFor='let transaction of transactions'>
 
-        <ion-card-header [color]="i % 2 === 0 ? 'secondary': 'danger'">
-          {{ i % 2 === 0 ? "INCOME": "EXPENSE" }}
+        <ion-card-header [color]="transaction.type === 'income' ? 'secondary': 'danger'">
+          {{ transaction.type }}
         </ion-card-header>
 
         <ion-card-content>
           <ion-list>
             <ion-item>
               <ion-icon name="cash" color="primary" item-start></ion-icon>
-              N 1000
+              N {{ transaction.amount }}
             </ion-item>
             <ion-item>
-              <ion-icon name="time" color="dark" item-start></ion-icon>
-              27th May 2018
+              <ion-icon name="list-box" color="primary" item-start></ion-icon>
+              {{ transaction.description }}
+            </ion-item>
+            <ion-item>
+              <ion-icon name="time" color="primary" item-start></ion-icon>
+              {{ transaction.created_at | date:'medium' }}
             </ion-item>
           </ion-list>
-
+          <ion-row>
+            <ion-col>
+              <button ion-button icon-start clear (click)="editTransaction(transaction)">
+                <ion-icon name="create"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-start clear class="float-right" (click)="deleteTransaction(transaction.id)" style="background-color: #ffffff;">
+                <ion-icon name="trash" color="danger"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
         </ion-card-content>
 
       </ion-card>
     </ion-list>
 
     <ion-list *ngSwitchCase="'expenses'">
-      <ion-card *ngFor='let in of counter(5) ;let i = index'>
+      <h1 *ngIf="expenseTransactions.length < 1">
+        No Expense records
+      </h1>
+      <ion-card *ngFor='let transaction of expenseTransactions'>
 
         <ion-card-header color="danger">
-          EXPENSE
+          {{ transaction.type }}
         </ion-card-header>
 
         <ion-card-content>
           <ion-list>
             <ion-item>
-              <ion-icon name="cash" item-start></ion-icon>
-              N 1000
+              <ion-icon name="cash" color="primary" item-start></ion-icon>
+              N {{ transaction.amount }}
             </ion-item>
             <ion-item>
-              <ion-icon name="time" item-start></ion-icon>
-              27th May 2018
+              <ion-icon name="list-box" color="primary" item-start></ion-icon>
+              {{ transaction.description }}
+            </ion-item>
+            <ion-item>
+              <ion-icon name="time" color="primary" item-start></ion-icon>
+              {{ transaction.created_at | date:'medium'}}
             </ion-item>
           </ion-list>
+          <ion-row>
+            <ion-col>
+              <button ion-button icon-start clear (click)="editTransaction(transaction)">
+                <ion-icon name="create"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-start clear class="float-right" (click)="deleteTransaction(transaction.id)" style="background-color: #ffffff;">
+                <ion-icon name="trash" color="danger"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
         </ion-card-content>
-
       </ion-card>
     </ion-list>
 
     <ion-list *ngSwitchCase="'income'">
-      <ion-card *ngFor='let in of counter(5) ;let i = index'>
+      <h1 *ngIf="incomeTransactions.length < 1">
+        No Income records
+      </h1>
+      <ion-card *ngFor='let transaction of incomeTransactions'>
 
         <ion-card-header color="secondary">
-          INCOME
+          {{ transaction.type }}
         </ion-card-header>
 
         <ion-card-content>
           <ion-list>
             <ion-item>
-              <ion-icon name="cash" item-start></ion-icon>
-              N 1000
+              <ion-icon name="cash" color="primary" item-start></ion-icon>
+              N {{ transaction.amount }}
             </ion-item>
             <ion-item>
-              <ion-icon name="time" item-start></ion-icon>
-              27th May 2018
+              <ion-icon name="list-box" color="primary" item-start></ion-icon>
+              {{ transaction.description }}
+            </ion-item>
+            <ion-item>
+              <ion-icon name="time" color="primary" item-start></ion-icon>
+              {{ transaction.created_at | date:'medium'}}
             </ion-item>
           </ion-list>
+          <ion-row>
+            <ion-col>
+              <button ion-button icon-start clear (click)="editTransaction(transaction)">
+                <ion-icon name="create"></ion-icon>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-start clear class="float-right" (click)="deleteTransaction(transaction.id)" style="background-color: #ffffff;">
+                <ion-icon name="trash" color="danger"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
         </ion-card-content>
-
       </ion-card>
     </ion-list>
   </div>

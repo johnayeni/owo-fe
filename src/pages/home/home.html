@@ -7,13 +7,23 @@
 </ion-header>
 
 <ion-content padding>
+
+  <ion-card>
+    <ion-card-header>
+      OVERVIEW
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #doughnutCanvas></canvas>
+    </ion-card-content>
+  </ion-card>
+
   <ion-card class="card--primary">
     <ion-card-header>
       Balance
     </ion-card-header>
     <ion-card-content>
       <h1>
-        - N 300000
+        N {{ userDetails.balance }}
       </h1>
     </ion-card-content>
   </ion-card>
@@ -23,7 +33,7 @@
     </ion-card-header>
     <ion-card-content>
       <h1>
-        N 240000
+        N {{ userDetails.total_income }}
       </h1>
     </ion-card-content>
   </ion-card>
@@ -33,12 +43,12 @@
     </ion-card-header>
     <ion-card-content>
       <h1>
-        N 300000
+        N {{ userDetails.total_expenses }}
       </h1>
     </ion-card-content>
   </ion-card>
   <ion-fab right bottom>
-    <button ion-fab>
+    <button ion-fab (click)="showModal()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
 import {
+  App,
   IonicPage,
   NavController,
   NavParams,
+  ViewController,
   ToastController,
   LoadingController,
-  AlertController,
 } from 'ionic-angular';
 import { HTTP } from '@ionic-native/http';
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../tabs/tabs';
-import { RegisterPage } from '../register/register';
+import { LoginPage } from '../login/login';
 
 /**
- * Generated class for the LoginPage page.
+ * Generated class for the ModalPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -21,53 +22,47 @@ import { RegisterPage } from '../register/register';
 
 @IonicPage()
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+  selector: 'page-modal',
+  templateUrl: 'modal.html',
 })
-export class LoginPage {
+export class ModalPage {
   constructor(
+    public app: App,
     public navCtrl: NavController,
+    public viewCtrl: ViewController,
     public navParams: NavParams,
-    private storage: Storage,
     private toastCtrl: ToastController,
     public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController,
     private http: HTTP,
+    private storage: Storage,
   ) {}
 
-  formData = {};
+  formData = { type: '', amount: 0, description: '' };
 
   url = 'https://owo-be.herokuapp.com';
 
-  async ionViewDidEnter() {
+  async submit() {
     const token = await this.storage.get('token');
-    if (token) {
-      this.navCtrl.push(TabsPage);
-    }
-  }
-
-  async login() {
+    const headers = { Authorization: `Bearer ${token}` };
     let loading = this.loadingCtrl.create({ content: 'Please wait...' });
     loading.present();
     try {
-      const response = await this.http.post(`${this.url}/auth/login`, this.formData, {});
-      const responseData = await JSON.parse(response.data);
+      const response = await this.http.post(`${this.url}/api/transaction`, this.formData, headers);
+      const responseData = JSON.parse(response.data);
       this.toast(responseData.message);
-      await this.storage.set('token', String(responseData.token));
-      this.navCtrl.push(TabsPage);
+      this.dismiss();
     } catch (error) {
-      if (error.status === 400) {
-        const errorData = await JSON.parse(error.error);
-        this.toast(errorData.messages[0].message || 'Error occured logging in');
+      console.log(error);
+      if (error.status === 401) {
+        this.logout();
+      } else if (error.status === 400) {
+        const errorData = JSON.parse(error.error);
+        this.toast(errorData.messages[0].message || 'Error creating transaction');
       } else {
-        this.toast('Error occured logging in');
+        this.toast('Error creating transaction');
       }
     }
     loading.dismiss();
-  }
-
-  goToRegisterPage() {
-    this.navCtrl.push(RegisterPage);
   }
 
   toast(message) {
@@ -76,5 +71,15 @@ export class LoginPage {
       duration: 3000,
     });
     toast.present();
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
+  logout() {
+    this.storage.remove('token');
+    this.app.getRootNav().setRoot(LoginPage);
+    this.navCtrl.popToRoot();
   }
 }

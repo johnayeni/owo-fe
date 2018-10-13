@@ -10,19 +10,19 @@
   <ion-list>
     <ion-item>
       <ion-icon name="person" color="primary" item-start></ion-icon>
-      Ayeni John
+      {{ user.fullname }}
     </ion-item>
     <ion-item>
       <ion-icon name="mail" color="primary" item-start></ion-icon>
-      test@gmail.com
+      {{ user.email }}
     </ion-item>
     <ion-item>
       <ion-icon name="cash" color="primary" item-start></ion-icon>
-      - N 24, 000
+      {{ user.balance }}
     </ion-item>
     <ion-item>
       <ion-icon name="time" color="primary" item-start></ion-icon>
-      Since 25th September 2017
+      Since {{ user.created_at }}
     </ion-item>
     <ion-item>
       <ion-icon name="power" color="danger" item-start></ion-icon>
