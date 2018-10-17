@@ -4,10 +4,8 @@ import { ModalPage } from './modal';
 
 @NgModule({
   declarations: [
-    ModalPage,
+    // ModalPage,
   ],
-  imports: [
-    IonicPageModule.forChild(ModalPage),
-  ],
+  imports: [IonicPageModule.forChild(ModalPage)],
 })
 export class ModalPageModule {}
